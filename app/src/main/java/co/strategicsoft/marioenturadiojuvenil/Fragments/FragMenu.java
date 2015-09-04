@@ -1,5 +1,6 @@
 package co.strategicsoft.marioenturadiojuvenil.Fragments;
 
+import android.app.ProgressDialog;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -29,7 +29,8 @@ public class FragMenu extends Fragment implements NewsListener, OnActionClickedL
     private ArrayList<TwitterM> listItems;
     private static final String SCREEN_NAME = "MarioEnTuRadio_";
     private ListView listNews;
-    MediaPlayer mMediaPlayer;
+    private MediaPlayer mMediaPlayer;
+    private ProgressDialog progress;
 
     public static FragMenu newInstance(Bundle param1) {
         FragMenu fragment = new FragMenu();
@@ -46,7 +47,6 @@ public class FragMenu extends Fragment implements NewsListener, OnActionClickedL
             operador = getArguments().getInt("position");
         }
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,6 +72,9 @@ public class FragMenu extends Fragment implements NewsListener, OnActionClickedL
                 ipv.setProgress(0);
                 ipv.setOnActionClickedListener(this);
 
+                progress = ProgressDialog.show(getActivity(), "", "Cargando...", true);
+                progress.setCancelable(false);
+
                 new Thread(new Runnable() {
                     public void run() {
                         try {
@@ -82,6 +85,7 @@ public class FragMenu extends Fragment implements NewsListener, OnActionClickedL
                             mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                                 @Override
                                 public void onPrepared(MediaPlayer mp) {
+                                    progress.dismiss();
                                     final ImageView control = (ImageView) getActivity().findViewById(R.id.control);
                                     control.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -107,6 +111,8 @@ public class FragMenu extends Fragment implements NewsListener, OnActionClickedL
                             e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
+                            progress.dismiss();
+                            //Toast.makeText(getActivity(), "Active el Wifi o los datos para que pueda escuchar la emisora ", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).start();
