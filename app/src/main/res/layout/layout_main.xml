@@ -43,8 +43,8 @@
 
         <co.strategicsoft.marioenturadiojuvenil.Reproductor.InteractivePlayerView
             android:id="@+id/ipv"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
             android:layout_centerInParent="true"
             app:imageCover="@color/color_fondo"
             app:selectedAction1="@drawable/shuffle_selected"
