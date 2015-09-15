@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="#262626"
     android:layout_height="match_parent">
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/mario_anime"
+        android:background="@drawable/logo_juvenil"
         android:scaleType="centerCrop"
         android:layout_above="@+id/imageBottom"/>
 
@@ -43,8 +44,8 @@
 
         <co.strategicsoft.marioenturadiojuvenil.Reproductor.InteractivePlayerView
             android:id="@+id/ipv"
-            android:layout_width="210dp"
-            android:layout_height="210dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_centerInParent="true"
             app:imageCover="@color/color_fondo"
             app:selectedAction1="@drawable/shuffle_selected"
@@ -135,7 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo_1"
+        android:src="@drawable/mario_anime"
         android:layout_alignTop="@+id/imageBottom"
         android:layout_marginTop="90dp"
         android:layout_marginBottom="20dp"/>
